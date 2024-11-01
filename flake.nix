@@ -5,21 +5,33 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
-  };
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";  
+};
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
     configuration = { pkgs, ... }: {
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
-        [ pkgs.vim
+        [
+	  pkgs.vim
+	  pkgs.tmux
         ];
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
+      system.defaults = {
+        dock.autohide = true;
+	dock.persistent-apps = [
+	  "/Applications/Google Chrome.app"
+	  "/Applications/Microsoft Teams.app"
+	  "/System/Applications/Mail.app"
+	];
+	finder.FXPreferredViewStyle = "clmv";
+      };
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
@@ -41,7 +53,17 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#wclaus-mbp
     darwinConfigurations."wclaus-mbp" = nix-darwin.lib.darwinSystem {
-      modules = [ configuration ];
+      modules = [ 
+	  configuration 
+	  nix-homebrew.darwinModules.nix-homebrew
+	  {
+	    nix-homebrew = {
+	      enable = true;
+	      enableRosetta = true;
+   	      user = "wclaus";
+   	    };
+	  }
+	];
     };
 
     # Expose the package set, including overlays, for convenience.
