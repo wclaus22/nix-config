@@ -1,5 +1,5 @@
 {
-  description = "wclausis Darwin system flake";
+  description = "NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -10,16 +10,41 @@
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
   let
-    configuration = { pkgs, config, ... }: {
+    configuration = { pkgs, config, ... }: { 
+      
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages =
         [
 	  pkgs.vim
-	  pkgs.tmux
-          pkgs.iterm2
 	  pkgs.mkalias
+	  
+ 	  pkgs.python310
+	  pkgs.python310Packages.virtualenv
+	  pkgs.python310Packages.pip
+	  pkgs.poetry
+
+	  pkgs.go
+	  pkgs.rustup
+
+	  pkgs.nodejs_20
+	  pkgs.wasm-pack
+	  pkgs.wasm-bindgen-cli
+	  pkgs.mold
+	  pkgs.lldb
+	  pkgs.clang
+	  
+	  pkgs.tree
+	  pkgs.tmux
+	  pkgs.btop
+	  pkgs.wget
+	  pkgs.iterm2
 	  pkgs.obsidian
+	  pkgs.vscodium
+	  pkgs.zsh-powerlevel10k
+	  
+	  pkgs.docker
+	  pkgs.docker-compose
 	];
 
       nixpkgs.config.allowUnfree = true;
@@ -56,6 +81,7 @@
 	  "/System/Applications/Mail.app"
 	  "${pkgs.iterm2}/Applications/iTerm2.app"
 	  "${pkgs.obsidian}/Applications/Obsidian.app"
+	  "${pkgs.vscodium}/Applications/VSCodium.app"
 	];
 	finder.FXPreferredViewStyle = "clmv";
       };
@@ -72,6 +98,8 @@
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
 
+      programs.zsh.enable = true;
+
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
@@ -80,8 +108,9 @@
     # Build darwin flake using:
     # $ darwin-rebuild build --flake .#wclaus-mbp
     darwinConfigurations."wclaus-mbp" = nix-darwin.lib.darwinSystem {
-      modules = [ 
-	  configuration 
+        specialArgs = {inherit inputs;};
+	modules = [ 
+	  configuration
 	  nix-homebrew.darwinModules.nix-homebrew
 	  {
 	    nix-homebrew = {

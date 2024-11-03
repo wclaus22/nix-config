@@ -35,7 +35,7 @@
 	octref.vetur
 	vue.volar
 	vuetifyjs.vuetify-vscode
-      ]
+      ];
     userSettings = {
       "[json]" = {
         "editor.defaultFormatter" = "vscode.json-language-features";
@@ -70,15 +70,15 @@
       "pylint.args" = [
         "--disable=E0015,E1101"
       ];
-      "github.copilot.enable": {
+      "github.copilot.enable" = {
         "*" = true;
         "plaintext" = false;
         "markdown" = false;
         "scminput" = false;
-      },
+      };
       "[python]" = {
         "editor.defaultFormatter" = "ms-python.black-formatter";
-      },
+      };
       "editor.codeActionsOnSave" = {
         "source.fixAll" = "explicit";
         "source.fixAll.eslint" = "explicit";
