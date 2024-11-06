@@ -23,6 +23,7 @@
 	  pkgs.python310Packages.virtualenv
 	  pkgs.python310Packages.pip
 	  pkgs.poetry
+	  pkgs.uv
 
 	  pkgs.go
 	  pkgs.rustup
@@ -40,7 +41,7 @@
 	  pkgs.wget
 	  pkgs.iterm2
 	  pkgs.obsidian
-	  pkgs.vscodium
+	  pkgs.vscode
 	  pkgs.zsh-powerlevel10k
 	  
 	  pkgs.docker
@@ -81,7 +82,7 @@
 	  "/System/Applications/Mail.app"
 	  "${pkgs.iterm2}/Applications/iTerm2.app"
 	  "${pkgs.obsidian}/Applications/Obsidian.app"
-	  "${pkgs.vscodium}/Applications/VSCodium.app"
+	  "${pkgs.vscode}/Applications/Visual Studio Code.app"
 	];
 	finder.FXPreferredViewStyle = "clmv";
       };
