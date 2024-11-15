@@ -34,14 +34,18 @@
 	  pkgs.mold
 	  pkgs.lldb
 	  pkgs.clang
-	  
+	 
+	  pkgs.openvpn
+	  pkgs.sshfs 
 	  pkgs.tree
 	  pkgs.tmux
 	  pkgs.btop
 	  pkgs.wget
+	  pkgs.google-chrome
 	  pkgs.iterm2
 	  pkgs.obsidian
 	  pkgs.vscode
+	  pkgs.spotify
 	  pkgs.zsh-powerlevel10k
 	  
 	  pkgs.docker
@@ -77,9 +81,8 @@
       system.defaults = {
         dock.autohide = true;
 	dock.persistent-apps = [
-	  "/Applications/Google Chrome.app"
+	  "${pkgs.google-chrome}/Applications/Google Chrome.app"
 	  "/Applications/Microsoft Teams.app"
-	  "/System/Applications/Mail.app"
 	  "${pkgs.iterm2}/Applications/iTerm2.app"
 	  "${pkgs.obsidian}/Applications/Obsidian.app"
 	  "${pkgs.vscode}/Applications/Visual Studio Code.app"
