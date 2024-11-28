@@ -6,7 +6,8 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";  
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 };
 
   outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew, home-manager }:
@@ -49,6 +50,13 @@
         ];
 	      finder.FXPreferredViewStyle = "clmv";
       };
+
+      homebrew = {
+        enable = true;
+        casks = [
+          "docker"
+        ];
+      };
       
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
@@ -78,6 +86,12 @@
           configuration
           ./modules/packages.nix
           home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            users.users.wclaus.home = "/Users/wclaus";
+            home-manager.users.wclaus = import ./modules/home.nix;
+          }
           nix-homebrew.darwinModules.nix-homebrew
           {
             nix-homebrew = {

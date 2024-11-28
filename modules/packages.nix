@@ -14,6 +14,7 @@
         pkgs.uv
 
         pkgs.go
+        pkgs.delve
         pkgs.rustup
 
         pkgs.nodejs_20
@@ -36,8 +37,5 @@
         pkgs.vscode
         pkgs.spotify
         pkgs.zsh-powerlevel10k
-        
-        pkgs.docker
-        pkgs.docker-compose
     ];
 }
