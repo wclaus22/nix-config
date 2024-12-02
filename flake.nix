@@ -55,6 +55,7 @@
         enable = true;
         casks = [
           "docker"
+          "firefox"
         ];
       };
       
