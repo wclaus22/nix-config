@@ -85,6 +85,7 @@
         modules = [ 
           configuration
           ./modules/packages.nix
+          ./modules/vscode.nix
           home-manager.darwinModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

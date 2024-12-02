@@ -34,7 +34,6 @@
         pkgs.google-chrome
         pkgs.iterm2
         pkgs.obsidian
-        pkgs.vscode
         pkgs.spotify
         pkgs.zsh-powerlevel10k
     ];
