@@ -20,7 +20,8 @@
         pkgs.nodejs_20
         pkgs.wasm-pack
         pkgs.wasm-bindgen-cli
-
+	
+	pkgs.yarn
         pkgs.openvpn
         pkgs.sshfs
         pkgs.macfuse-stubs 
