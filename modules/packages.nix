@@ -16,12 +16,13 @@
         pkgs.go
         pkgs.delve
         pkgs.rustup
-
-        pkgs.nodejs_20
-        pkgs.wasm-pack
+	
+	pkgs.wasm-pack
         pkgs.wasm-bindgen-cli
 	
-	pkgs.yarn
+	(pkgs.yarn.override {
+          nodejs = null;
+        })
         pkgs.openvpn
         pkgs.sshfs
         pkgs.macfuse-stubs 
