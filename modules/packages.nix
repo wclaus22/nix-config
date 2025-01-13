@@ -10,8 +10,8 @@
         pkgs.python310
         pkgs.python310Packages.virtualenv
         pkgs.python310Packages.pip
-        pkgs.poetry
-        pkgs.uv
+	pkgs.poetry	
+	pkgs.uv
 
         pkgs.go
         pkgs.delve

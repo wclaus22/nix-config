@@ -56,6 +56,7 @@
         casks = [
           "docker"
           "firefox"
+	  "scroll-reverser"
         ];
       };
       
