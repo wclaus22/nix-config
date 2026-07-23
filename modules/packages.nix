@@ -1,39 +1,41 @@
 { pkgs, ... }:
 {
-    # List packages installed in system profile. To search by name, run:
-    # $ nix-env -qaP | grep wget
-    environment.systemPackages =
-    [
-        pkgs.vim
-        pkgs.mkalias
-        
-        pkgs.python310
-        pkgs.python310Packages.virtualenv
-        pkgs.python310Packages.pip
-	pkgs.poetry	
-	pkgs.uv
+  # List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [
+    # editors / core
+    vim
+    mkalias
 
-        pkgs.go
-        pkgs.delve
-        pkgs.rustup
-	
-	pkgs.wasm-pack
-        pkgs.wasm-bindgen-cli
-	
-	(pkgs.yarn.override {
-          nodejs = null;
-        })
-        pkgs.openvpn
-        pkgs.sshfs
-        pkgs.macfuse-stubs 
-        pkgs.tree
-        pkgs.tmux
-        pkgs.btop
-        pkgs.wget
-        pkgs.google-chrome
-        pkgs.iterm2
-        pkgs.obsidian
-        pkgs.spotify
-        pkgs.zsh-powerlevel10k
-    ];
+    # python
+    python312
+    python312Packages.virtualenv
+    python312Packages.pip
+    uv
+
+    # languages / toolchains
+    go
+    delve
+    rustup
+    wasm-pack
+    wasm-bindgen-cli
+    (yarn.override { nodejs = null; })
+
+    # cli tools
+    htop
+    btop
+    pandoc
+    tree
+    tmux
+    wget
+    openvpn
+    sshfs
+    macfuse-stubs
+
+    # gui apps
+    wezterm
+    google-chrome
+    obsidian
+    spotify
+  ];
 }
